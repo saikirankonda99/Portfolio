@@ -27,6 +27,19 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  transform-origin: center;
+  animation: slowPushIn 20s ease-in-out infinite alternate;
+}
+
+@keyframes slowPushIn {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fgVideo {
+    animation: none;
+  }
 }
 
 /* ── gradient overlay ────────────────────────────────────────── */
@@ -39,15 +52,6 @@
     linear-gradient(to top,  rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 100%),
     linear-gradient(to right, rgba(18, 55, 120, 0.28) 0%, transparent 42%),
     linear-gradient(to left,  rgba(210, 90, 20, 0.22) 0%, transparent 42%);
-  pointer-events: none;
-}
-
-/* ── Three.js canvas ─────────────────────────────────────────── */
-
-.canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
   pointer-events: none;
 }
 

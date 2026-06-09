@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import CinematicLayer from './CinematicLayer'
 import styles from './VideoIntro.module.css'
 
 export default function VideoIntro({
@@ -119,9 +118,6 @@ export default function VideoIntro({
 
       {/* Gradient overlay */}
       <div className={styles.overlay} aria-hidden="true" />
-
-      {/* Three.js particle canvas */}
-      <CinematicLayer className={styles.canvas} />
 
       {/* Hero copy — bottom left */}
       <div className={styles.content}>
