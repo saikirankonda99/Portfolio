@@ -1,0 +1,193 @@
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #080808;
+}
+
+/* ── videos ─────────────────────────────────────────────────── */
+
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(48px);
+  transform: scale(1.2);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.fgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* ── gradient overlay ────────────────────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to top,  rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 100%),
+    linear-gradient(to right, rgba(18, 55, 120, 0.28) 0%, transparent 42%),
+    linear-gradient(to left,  rgba(210, 90, 20, 0.22) 0%, transparent 42%);
+  pointer-events: none;
+}
+
+/* ── Three.js canvas ─────────────────────────────────────────── */
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── hero copy ───────────────────────────────────────────────── */
+
+.content {
+  position: absolute;
+  bottom: clamp(4rem, 10vh, 7rem);
+  left: clamp(1.5rem, 6vw, 5.5rem);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 90vw;
+}
+
+.tagline {
+  display: block;
+  font-size: clamp(0.6rem, 1.1vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 178, 76, 0.92);
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0.25rem 0 0;
+}
+
+.firstName,
+.lastName {
+  display: block;
+  font-family: var(--hero-display, 'Sora', system-ui, sans-serif);
+  font-size: clamp(3.2rem, 8.5vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  /* prevent overflow on very small screens */
+  word-break: break-word;
+}
+
+.role {
+  margin: 0.6rem 0 0;
+  font-size: clamp(0.8rem, 1.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.58);
+  max-width: 44ch;
+  line-height: 1.55;
+}
+
+/* ── controls (play / mute) ──────────────────────────────────── */
+
+.controls {
+  position: absolute;
+  bottom: clamp(4rem, 10vh, 7rem);
+  right: clamp(1.5rem, 4vw, 4rem);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  padding: 0;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+}
+
+.soundBadge {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2rem;
+  padding: 0.32rem 0.85rem;
+  white-space: nowrap;
+  animation: badgeFade 0.4s ease 4.6s forwards;
+}
+
+@keyframes badgeFade {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ── scroll cue ──────────────────────────────────────────────── */
+
+.scrollCue {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.55));
+  animation: linePulse 2s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes linePulse {
+  0%   { opacity: 0.25; transform: scaleY(0.6); }
+  50%  { opacity: 1;    transform: scaleY(1);   }
+  100% { opacity: 0.25; transform: scaleY(0.6); }
+}
